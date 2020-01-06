@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Bootstrap CSS -->
+  
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <title>Weather</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <nav class="navbar navbar-dark bg-dark justify-center">
+        <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+    </nav>
+
+    <div class= "container-fluid mt-3">
+        <div class="row">
+
+            <div id = "search-pane" class= "col-md-3">
+                <h4>Search for a City:</h4>
+                <form class="form-inline my-2 my-lg-0">
+                    <input id = "city-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button id = "search-city" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <!-- Searched cities will get Dumped Here  -->
+                <div id = "search-history" class= "mt-2"></div>
+            </div>
+
+            <!--Current wearther and 5 day forcast will get Dumped Here  -->
+            <div id = "weather-view" class= "col-md-9">
+                <div id = "current"></div>
+                <div id = "future"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <script src = "script.js"></script>
+
+</body>

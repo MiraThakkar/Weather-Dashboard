@@ -1,0 +1,14 @@
+.col-md-3{
+    background-color: rgb(216, 241, 241);
+    height: 100%;
+}
+
+.city-btn {
+    width: 100%;
+    text-align: left;
+    padding:5px;
+    background-color: white;
+    border: 1px solid rgb(224, 223, 223);
+    border-radius: 5px;
+
+}
