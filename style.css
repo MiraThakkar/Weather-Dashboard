@@ -1,6 +1,7 @@
 .col-md-3{
     background-color: rgb(216, 241, 241);
     height: 100%;
+    padding: 20px;
 }
 
 .city-btn {
@@ -12,3 +13,24 @@
     border-radius: 5px;
 
 }
+
+#current {
+    border: 1px solid rgb(224, 223, 223);
+    border-radius: 5px;
+    padding: 20px;
+    margin:auto;
+
+}
+
+#future {
+    margin:auto;
+}
+
+.col{
+    width: 20%;
+    background-color: blue;
+    color: white;
+    padding:20px;
+    margin: 10px;
+}
+

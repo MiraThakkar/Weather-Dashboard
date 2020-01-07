@@ -39,6 +39,7 @@ $("#search-city").on("click", function(event) {
     //console.log(city);
     
     queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + ",US&units=imperial&appid=" + APIKey;
+    forcastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",US&units=imperial&appid=" + APIKey;
 
     // Here we run our AJAX call to the OpenWeatherMap API
     $.ajax({
@@ -78,6 +79,36 @@ $("#search-city").on("click", function(event) {
 
         });
 
+        $.ajax({
+            url: forcastQueryURL,
+            method: "GET"
+            })
+            // We store all of the retrieved data inside of an object called "forcast"
+            .then(function(forecast){
+
+                console.log(forecast);
+        
+                for(i=0; i<5; i++){
+                    var k = 8 * i +2; 
+                    var futureWeatherDiv = $("<div class = 'col'>");
+                    var futureDate = forecast.list[k].dt_txt;                    
+                    var fDate = $("<p>").text(futureDate.substring(0,10));
+                    futureWeatherDiv.append(fDate);
+
+                    var futureTemp = Math.floor(forecast.list[k].main.temp);
+                    var fTemp = $("<p>").text( "Temperature: " + futureTemp);
+                    futureWeatherDiv.append(fTemp);
+                    
+
+                    var futureHumd = Math.floor(forecast.list[k].main.humidity);
+                    var fHumd = $("<p>").text( "Humidity: " + futureHumd);
+                    futureWeatherDiv.append(fHumd);
+
+                    $("#future").append(futureWeatherDiv);
+                    
+                }
+
+            });
     // Calling renderButtons which handles the processing of our movie array
 
 });
