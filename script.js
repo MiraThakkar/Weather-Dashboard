@@ -3,44 +3,55 @@ var citySrchList = [];
 var city = $("#city-input").val().trim();
 
 
-function renderCityButtons (){
-
-    // Deleting the movies prior to adding new movies
-        // (this is necessary otherwise you will have repeat buttons)
-        $("#search-history").empty();
-
-        // Looping through the array of movies
-        for (var i = 0; i < citySrchList.length; i++) {
-
-          // Then dynamicaly generating buttons for each movie in the array
-          // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-          var a = $("<button>");
-          // Adding a class of city-btn to our button
-          a.addClass("city-btn ");
-          // Adding a data-attribute
-          a.attr("data-name", citySrchList[i]);
-          // Providing the initial button text
-          a.text(citySrchList[i]);
-          // Adding the button to the buttons-view div
-          $("#search-history").append(a);
-        }
-}
 
 
-
-
-
+//$(this).attr("data-name"))
 
 $("#search-city").on("click", function(event) {
     event.preventDefault();
+    // $("#current").empty();
+    // $("#future").empty();
+    //This line grabs the input from the textbox
+    city = $("#city-input").val().trim();
+    console.log(city);
+    citySrchList.push(city);
+    renderCityButtons();
+    //display weather
+    displayWeather(city);
+
+});
+
+function renderCityButtons (){
+    // Deleting the cities prior to adding new cities
+    // (this is necessary otherwise you will have repeat buttons)
+    $("#search-history").empty();
+    // Looping through the array of movies
+    for (var i = 0; i < citySrchList.length; i++) {
+        // Then dynamicaly generating buttons for each city in the array
+        // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
+        var a = $("<button>");
+        // Adding a class of city-btn to our button
+        a.addClass("city-btn");
+        // Adding a data-attribute
+        a.attr("data-name", citySrchList[i]);
+        // Providing the initial button text
+        a.text(citySrchList[i]);
+        // Adding the button to the buttons-view div
+        $("#search-history").append(a);
+    }
+}
+
+function displayWeather(city){
     $("#current").empty();
+    $("#future").empty();
     // This line grabs the input from the textbox
-    var city = $("#city-input").val().trim();
-    //console.log(city);
+    //var city = $(this).attr("data-name");
+    console.log(city);
     
     queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + ",US&units=imperial&appid=" + APIKey;
-    forcastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",US&units=imperial&appid=" + APIKey;
-
+    forecastQueryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + city + ",US&units=imperial&appid=" + APIKey;
+    console.log(queryURL);
+    console.log(forecastQueryURL);
     // Here we run our AJAX call to the OpenWeatherMap API
     $.ajax({
         url: queryURL,
@@ -74,88 +85,49 @@ $("#search-city").on("click", function(event) {
             
             currentWeatherDiv.append(pWind);
             $("#current").append(currentWeatherDiv);    
-            citySrchList.push(city);
-            renderCityButtons();
+            
+            //citySrchList.push(city);
+            //renderCityButtons();
 
         });
 
         $.ajax({
-            url: forcastQueryURL,
+            url: forecastQueryURL,
             method: "GET"
             })
-            // We store all of the retrieved data inside of an object called "forcast"
+            // We store all of the retrieved data inside of an object called "forecast"
             .then(function(forecast){
 
-                console.log(forecast);
-        
-                for(i=0; i<5; i++){
-                    var k = 8 * i +2; 
-                    var futureWeatherDiv = $("<div class = 'col'>");
-                    var futureDate = forecast.list[k].dt_txt;                    
-                    var fDate = $("<p>").text(futureDate.substring(0,10));
-                    futureWeatherDiv.append(fDate);
+            console.log(forecast);
+    
+            for(i=0; i<5; i++){
+                var k = 8 * i +2; 
+                var futureWeatherDiv = $("<div class = 'col'>");
+                var futureDate = forecast.list[k].dt_txt;                    
+                var fDate = $("<p>").text(futureDate.substring(0,10));
+                futureWeatherDiv.append(fDate);
 
-                    var futureTemp = Math.floor(forecast.list[k].main.temp);
-                    var fTemp = $("<p>").text( "Temperature: " + futureTemp);
-                    futureWeatherDiv.append(fTemp);
-                    
+                var futureTemp = Math.floor(forecast.list[k].main.temp);
+                var fTemp = $("<p>").text( "Temperature: " + futureTemp);
+                futureWeatherDiv.append(fTemp);
+                
 
-                    var futureHumd = Math.floor(forecast.list[k].main.humidity);
-                    var fHumd = $("<p>").text( "Humidity: " + futureHumd);
-                    futureWeatherDiv.append(fHumd);
+                var futureHumd = Math.floor(forecast.list[k].main.humidity);
+                var fHumd = $("<p>").text( "Humidity: " + futureHumd);
+                futureWeatherDiv.append(fHumd);
 
-                    $("#future").append(futureWeatherDiv);
-                    
-                }
+                $("#future").append(futureWeatherDiv);                
+            }
 
-            });
-    // Calling renderButtons which handles the processing of our movie array
+        });  
+}
+
+//$("#search-history").on("click", displayWeather("null"));
+
+$("#search-history").on("click", function(event) {
+    //This line grabs the name of the city button    
+    city = event.target.textContent;
+    //display weather
+    displayWeather(city);
 
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // // Here we are building the URL we need to query the database
-    // var queryURL = "https://api.openweathermap.org/data/2.5/weather?" +
-    //   "q=Bujumbura,Burundi&units=imperial&appid=" + APIKey;
-
-    // // Here we run our AJAX call to the OpenWeatherMap API
-    // $.ajax({
-    //   url: queryURL,
-    //   method: "GET"
-    // })
-    //   // We store all of the retrieved data inside of an object called "response"
-    //   .then(function(response) {
-
-    //     // Log the queryURL
-    //     console.log(queryURL);
-
-    //     // Log the resulting object
-    //     console.log(response);
-
-    //     // Transfer content to HTML
-    //     $(".city").html("<h1>" + response.name + " Weather Details</h1>");
-    //     $(".wind").text("Wind Speed: " + response.wind.speed);
-    //     $(".humidity").text("Humidity: " + response.main.humidity);
-    //     $(".temp").text("Temperature (F) " + response.main.temp);
-
-    //     // Converts the temp to Kelvin with the below formula
-    //     var tempF = (response.main.temp - 273.15) * 1.80 + 32;
-    //     $(".tempF").text("Temperature (Kelvin) " + tempF);
-
-    //     // Log the data in the console as well
-    //     console.log("Wind Speed: " + response.wind.speed);
-    //     console.log("Humidity: " + response.main.humidity);
-    //     console.log("Temperature (F): " + response.main.temp);
-    //   });
