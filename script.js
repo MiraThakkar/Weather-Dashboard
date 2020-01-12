@@ -4,11 +4,15 @@ var city="Hartford";
 var currentDay = moment().format(" MM/DD/YYYY");
 
 var storedCityList = JSON.parse(localStorage.getItem("citySrchList"));
+
+displayWeather(city);   
+
+
 if(storedCityList != null){
     //move data from storedCityList to CitySrchList
     citySrchList = storedCityList.slice();
     renderCityButtons();
-    displayWeather(city);
+    
 }
 
 $(".btn-primary").click(); 
@@ -17,8 +21,6 @@ $(".btn-primary").click();
 
 $("#search-city").on("click", function(event) {
     event.preventDefault();
-    // $("#current").empty();
-    // $("#future").empty();
     //This line grabs the input from the textbox    
     city = $("#city-input").val().trim();
     if(city == ""){
@@ -30,20 +32,15 @@ $("#search-city").on("click", function(event) {
 
 function renderCityButtons (){
     // Deleting the cities prior to adding new cities
-    // (this is necessary otherwise you will have repeat buttons)
     $("#search-history").empty();
-    // Looping through the array of citiesf
+    // Looping through the array of cities
     for (var i = 0; i < citySrchList.length; i++) {
         // Then dynamicaly generating buttons for each city in the array
         
         var a = $("<button>");
-        // Adding a class of city-btn to our button
         a.addClass("city-btn Collapsible");
-        // Adding a data-attribute
         a.attr("data-name", citySrchList[i]);
-        // Providing the initial button text
         a.text(citySrchList[i]);
-        // Adding the button to the buttons-view div
         $("#search-history").prepend(a);
     }
 }
@@ -62,17 +59,17 @@ function displayWeather(city){
         url: queryURL,
         method: "GET"
         })
-        // We store all of the retrieved data inside of an object called "response"
+        //  retrieved data is stored inside of an object called "response"
         .then(function(response) {   
 
             var wIcon = (response.weather[0].icon);
             var iconURL = "http://openweathermap.org/img/wn/" + wIcon + ".png";
 
-            //condition statement to check if the city entered by user is in already into the "citySrchList" array
+            //condition statement to check if the city entered by user is already in the "citySrchList" array
             var city = response.name;
             if (citySrchList.indexOf(city) < 0 ){
                 
-                //check if the length of the array is greater than 10 it will delete the array element at first position
+                //Array leangth check---> if the length of the array is greater than 10, it will delete the array element at first position
                 if(citySrchList.length >=10){
                     citySrchList.shift();
                 }
@@ -92,12 +89,7 @@ function displayWeather(city){
 
             var iconEl = $("<img>").attr('src', iconURL);
             currentWeatherDiv.append(iconEl);
-
-            // var icon = (response.weather[0].icon);
-            // var cityHeader = $("<img>").text(cityName + " - "+currentDay);
-            // currentWeatherDiv.append(cityHeader );
-            
-
+       
             var temp = Math.floor(response.main.temp);
             var pTemp = $("<p>").html( "Temperature: " + temp + " &#8457;");
             currentWeatherDiv.append(pTemp);
@@ -151,7 +143,7 @@ function displayWeather(city){
                 url: forecastQueryURL,
                 method: "GET"
                 })
-                // We store all of the retrieved data inside of an object called "forecast"
+                
                 .then(function(forecast){
 
                     console.log(forecast);

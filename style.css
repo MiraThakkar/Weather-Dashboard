@@ -1,4 +1,4 @@
-.col-md-3{
+#search-pane {
     background-color: rgb(213, 243, 243);
     height: 100%;
     padding: 20px;
@@ -23,8 +23,7 @@
 }
 
 #current {
-    border: 1px solid rgb(224, 223, 223);
-    border-radius: 5px;
+    
     padding: 20px;
     margin:auto;
 
@@ -95,17 +94,32 @@ iframe {
     display: inline;
 }
 
-@media (max-width: 576px){
+@media (max-width: 900px){
 
-#search-pane {
-    width: 100%;
-    margin: 2px;
+    #search-pane {
+        width: 100% !important;
+        margin: 5px;
+    }
+
+    .col {
+
+        width: 50% ;
+    }
+
+    #weather-view { 
+        width: 100% !important;
+    }
+
+    #city-input {
+        width: 100% !important;
+        margin:2px;
+        padding:2px;
+    }
+
+    #current {
+        border: none;
+    }
+    
+
 }
 
-.col {
-
-    width: 50% ;
-}
-
-
-}
