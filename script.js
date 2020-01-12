@@ -149,10 +149,12 @@ function displayWeather(city){
                     console.log(forecast);
         
                 for(i=0; i<5; i++){
-                    var k = 8 * i +2; 
+                    var k = 8 * i + 7; 
                     var futureWeatherDiv = $("<div class = 'col'>");
                     var futureDate = new Date((forecast.list[k].dt_txt).substring(0,10));  
+                    console.log(forecast.list[k].dt_txt);
                     var fDD = futureDate.getDate()+1;
+                    console.log(futureDate.getDate());
                     var fMM = futureDate.getMonth() + 1;
                     var fYYYY = futureDate.getFullYear();
                     var formattedDate = fMM + "/" + fDD + "/" + fYYYY;
