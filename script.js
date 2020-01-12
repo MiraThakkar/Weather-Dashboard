@@ -152,7 +152,7 @@ function displayWeather(city){
                     var k = 8 * i +2; 
                     var futureWeatherDiv = $("<div class = 'col'>");
                     var futureDate = new Date((forecast.list[k].dt_txt).substring(0,10));  
-                    var fDD = futureDate.getDate();
+                    var fDD = futureDate.getDate()+1;
                     var fMM = futureDate.getMonth() + 1;
                     var fYYYY = futureDate.getFullYear();
                     var formattedDate = fMM + "/" + fDD + "/" + fYYYY;
