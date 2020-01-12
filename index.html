@@ -5,33 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Bootstrap CSS -->
-  
+  <!--
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    -->
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="https://kit.fontawesome.com/402b524d37.js" crossorigin="anonymous"></script>
   <title>Weather</title>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
-    <nav class="navbar navbar-dark bg-dark justify-center">
+    <nav class="navbar navbar-dark bg-dark">
+        <img alt="light rain" src= "weather-icon-png-2.png" width="50" height="50">
         <span class="navbar-brand mb-0 h1">Weather Dashboard</span>
+        <a href="#"></a>
     </nav>
 
-    <div class= "container-fluid mt-3">
+
+
+
+    <div class= "container-fluid mt-2">
         <div class="row">
 
             <div id = "search-pane" class= "col-md-3">
                 <h4>Search for a City:</h4>
                 <form class="form-inline my-2 my-lg-0">
                     <input id = "city-input" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                    <button id = "search-city" class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button id = "search-city" class="btn btn-outline-success my-2 my-sm-0" type="submit"><i class="fa fa-search fa_default fa-1x"></i></button>
+                    <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#search-history" aria-expanded="false" aria-controls="search-history"><i class="fa fa-list fa_default fa-1x"></i></button>
                 </form>
                 <!-- Searched cities will get Dumped Here  -->
-                <div id = "search-history" class= "mt-2"></div>
+                <!--Start Heree-->
+                <div id ="search-history" class= "mt-2 collapse multi-collapse"></div>
+                <!--End Here-->     
             </div>
-
             <!--Current wearther and 5 day forcast will get Dumped Here  -->
             <div id = "weather-view" class= "col-md-9">
                 <div class="row" id = "current">Weather View</div>

@@ -1,16 +1,24 @@
 .col-md-3{
-    background-color: rgb(216, 241, 241);
+    background-color: rgb(213, 243, 243);
     height: 100%;
     padding: 20px;
+}
+
+#search-city {
+    background:rgba(21, 93, 189, 0.74);
+    color:white;
+    border-color: gray;
 }
 
 .city-btn {
     width: 100%;
     text-align: left;
     padding:5px;
-    background-color: white;
+    background-color: rgba(21, 93, 189, 0.74);
     border: 1px solid rgb(224, 223, 223);
+    color: white;
     border-radius: 5px;
+    height: 42px;
 
 }
 
@@ -28,9 +36,76 @@
 
 .col{
     width: 20%;
-    background-color: blue;
+    background-color: rgba(21, 93, 189, 0.74);
     color: white;
     padding:20px;
     margin: 10px;
 }
 
+
+
+
+.low {
+    background-color: rgb(55, 194, 55);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline;
+    margin:5px;
+}
+.mod {
+    background-color: rgb(252, 252, 38);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline;
+    margin:5px;
+    
+}
+
+.high{
+    background-color: orange;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline;
+    margin:5px;
+}
+
+.vhigh {
+    background-color: red;
+    padding: 5px;
+    border-radius: 5px;
+    display: inline;
+    margin:5px;
+}
+
+.exhigh {
+    background-color: rgb(99, 10, 99);
+    padding: 5px;
+    border-radius: 5px;
+    display: inline;
+    margin:5px;
+    color: white;
+
+}
+
+iframe {
+    height: 50 !important;
+    width: 50 !important;
+
+    border: none;
+    display: inline;
+}
+
+@media (max-width: 576px){
+
+#search-pane {
+    width: 100%;
+    margin: 2px;
+}
+
+.col {
+
+    width: 50% ;
+}
+
+
+}
